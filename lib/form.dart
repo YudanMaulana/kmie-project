@@ -27,7 +27,7 @@ class _MyFormState extends State<MyForm> {
           return AlertDialog(
             titleTextStyle: const TextStyle(color: Color(0xFFEC4C01)),
             title: const Text('Hasil Efisiensi overall'),
-            content: Text('$intResult counter $percentageResult'),
+            content: Text('$intResult counter'),
           );
         },
       );

@@ -4,34 +4,40 @@ class MyForm extends StatefulWidget {
   const MyForm({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _MyFormState createState() => _MyFormState();
 }
 
 class _MyFormState extends State<MyForm> {
-  final _formKey = GlobalKey<FormState>();
   final TextEditingController _controller1 = TextEditingController();
   final TextEditingController _controller2 = TextEditingController();
-  double _result = 0; // Untuk menyimpan hasil penjumlahan
-  void _submitForm() {
-    if (_formKey.currentState!.validate()) {
+  double _result = 0; // Untuk menyimpan hasil perhitungan
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Tambahkan listener pada kedua controller
+    _controller1.addListener(_updateResult);
+    _controller2.addListener(_updateResult);
+  }
+
+  // Fungsi untuk meperbarui hasil ketika ada perubahan pada form
+  void _updateResult() {
+    setState(() {
       double num1 = double.tryParse(_controller1.text) ?? 0;
       double num2 = (double.tryParse(_controller2.text) ?? 0) * 60;
 
-      // Menjumlahkan kedua form ygy
+      // Update hasil perhitungan setiap ada perubahan
       _result = num1 * num2;
-      int intResult = _result.toInt();
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            titleTextStyle: const TextStyle(color: Color(0xFFEC4C01)),
-            title: const Text('Hasil Efisiensi overall'),
-            content: Text('$intResult counter'),
-          );
-        },
-      );
-    }
+    });
+  }
+
+  @override
+  void dispose() {
+    // Hapus listener untuk menghindari memory leaks
+    _controller1.dispose();
+    _controller2.dispose();
+    super.dispose();
   }
 
   @override
@@ -46,36 +52,61 @@ class _MyFormState extends State<MyForm> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Form(
-          key: _formKey,
           child: Column(
             children: [
-              TextFormField(
-                keyboardType: TextInputType.numberWithOptions(signed: true),
-                controller: _controller1,
-                decoration: const InputDecoration(labelText: 'RPM Mesin'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Masukkan nilai';
-                  }
-                  return null;
-                },
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  style: TextStyle(color: Colors.red),
+                  // cursorColor: Colors.amber, uncomment untuk style text ketika fokus
+                  keyboardType: TextInputType.numberWithOptions(signed: true),
+                  controller: _controller1,
+                  decoration: const InputDecoration(
+                      labelText: 'RPM Mesin',
+                      labelStyle: TextStyle(fontWeight: FontWeight.w400),
+                      // ketika fokus
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                        color: Color(0xFFEC4C01),
+                      )),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Color.fromRGBO(37, 37, 37, 1))),
+                      floatingLabelStyle: TextStyle(color: Color(0xFFEC4C01))),
+                ),
               ),
-              TextFormField(
-                keyboardType: TextInputType.numberWithOptions(signed: true),
-                controller: _controller2,
-                decoration: const InputDecoration(
-                    labelText: 'Jam Kerja', labelStyle: TextStyle()),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Masukkan nilai';
-                  }
-                  return null;
-                },
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  style: TextStyle(color: Colors.red),
+                  // cursorColor: Colors.amber, uncomment untuk style text ketika fokus
+                  keyboardType: TextInputType.numberWithOptions(signed: true),
+                  controller: _controller2,
+                  decoration: const InputDecoration(
+                      labelText: 'Jam Kerja',
+                      labelStyle: TextStyle(fontWeight: FontWeight.w400),
+                      // ketika fokus
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                        color: Color(0xFFEC4C01),
+                      )),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Color.fromRGBO(37, 37, 37, 1))),
+                      floatingLabelStyle: TextStyle(color: Color(0xFFEC4C01))),
+                ),
               ),
-              ElevatedButton(
-                onPressed: _submitForm,
-                child: const Text('Jumlahkan'),
-              ),
+              const SizedBox(height: 20),
+              Text.rich(TextSpan(children: [
+                TextSpan(
+                    text: '${_result.toInt()}',
+                    style: const TextStyle(
+                        fontSize: 20, color: Color(0xFFEC4C01))),
+                TextSpan(
+                    text: ' counter',
+                    style: const TextStyle(
+                        fontSize: 20, color: Color.fromARGB(255, 0, 0, 0)))
+              ]))
             ],
           ),
         ),

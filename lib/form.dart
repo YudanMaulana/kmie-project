@@ -10,7 +10,9 @@ class MyForm extends StatefulWidget {
 class _MyFormState extends State<MyForm> {
   final TextEditingController _controller1 = TextEditingController();
   final TextEditingController _controller2 = TextEditingController();
-  double _result = 0; // Untuk menyimpan hasil perhitungan
+  final TextEditingController _controller3 = TextEditingController();
+  double _result = 0;
+  double _result1 = 0; // Untuk menyimpan hasil perhitungan
 
   @override
   void initState() {
@@ -19,16 +21,24 @@ class _MyFormState extends State<MyForm> {
     // Tambahkan listener pada kedua controller
     _controller1.addListener(_updateResult);
     _controller2.addListener(_updateResult);
+    _controller3.addListener(_updateResult);
   }
+
+  // void initStateCounterAwal() {
+  //   super.initState();
+  //   _controller3.addListener(_updateResult);
+  // }
 
   // Fungsi untuk meperbarui hasil ketika ada perubahan pada form
   void _updateResult() {
     setState(() {
       double num1 = double.tryParse(_controller1.text) ?? 0;
       double num2 = (double.tryParse(_controller2.text) ?? 0) * 60;
+      double num3 = double.tryParse(_controller3.text) ?? 0;
 
       // Update hasil perhitungan setiap ada perubahan
       _result = num1 * num2;
+      _result1 = _result - num3;
     });
   }
 
@@ -37,6 +47,7 @@ class _MyFormState extends State<MyForm> {
     // Hapus listener untuk menghindari memory leaks
     _controller1.dispose();
     _controller2.dispose();
+    _controller3.dispose();
     super.dispose();
   }
 
@@ -97,16 +108,56 @@ class _MyFormState extends State<MyForm> {
                 ),
               ),
               const SizedBox(height: 20),
-              Text.rich(TextSpan(children: [
-                TextSpan(
-                    text: '${_result.toInt()}',
-                    style: const TextStyle(
-                        fontSize: 20, color: Color(0xFFEC4C01))),
-                TextSpan(
-                    text: ' counter',
-                    style: const TextStyle(
-                        fontSize: 20, color: Color.fromARGB(255, 0, 0, 0)))
-              ]))
+              Text.rich(TextSpan(
+                children: [
+                  TextSpan(
+                      text: '${_result.toInt()}',
+                      style: const TextStyle(
+                          fontSize: 20, color: Color(0xFFEC4C01))),
+                  TextSpan(
+                      text: ' counter',
+                      style: const TextStyle(
+                          fontSize: 20, color: Color.fromARGB(255, 0, 0, 0)))
+                ],
+              )),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  style: TextStyle(color: Colors.red),
+                  // cursorColor: Colors.amber, uncomment untuk style text ketika fokus
+                  keyboardType: TextInputType.numberWithOptions(signed: true),
+                  controller: _controller3,
+                  decoration: const InputDecoration(
+                      labelText: 'total counter operator',
+                      labelStyle: TextStyle(fontWeight: FontWeight.w400),
+                      // ketika fokus
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                        color: Color(0xFFEC4C01),
+                      )),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Color.fromRGBO(37, 37, 37, 1))),
+                      floatingLabelStyle: TextStyle(color: Color(0xFFEC4C01))),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Text.rich(TextSpan(
+                children: [
+                  TextSpan(
+                      text: 'Lost ',
+                      style: const TextStyle(
+                          fontSize: 20, color: Color.fromARGB(255, 0, 0, 0))),
+                  TextSpan(
+                      text: '${_result1.toInt()}',
+                      style: const TextStyle(
+                          fontSize: 20, color: Color(0xFFEC4C01))),
+                  TextSpan(
+                      text: ' counter',
+                      style: const TextStyle(
+                          fontSize: 20, color: Color.fromARGB(255, 0, 0, 0)))
+                ],
+              )),
             ],
           ),
         ),

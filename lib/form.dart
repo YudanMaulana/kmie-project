@@ -11,8 +11,9 @@ class _MyFormState extends State<MyForm> {
   final TextEditingController _controller1 = TextEditingController();
   final TextEditingController _controller2 = TextEditingController();
   final TextEditingController _controller3 = TextEditingController();
-  double _result = 0;
-  double _result1 = 0; // Untuk menyimpan hasil perhitungan
+  double _countermurni = 0;
+  double _lostcounter = 0;
+  double _percentlost = 0; // Untuk menyimpan hasil perhitungan
 
   @override
   void initState() {
@@ -37,8 +38,9 @@ class _MyFormState extends State<MyForm> {
       double num3 = double.tryParse(_controller3.text) ?? 0;
 
       // Update hasil perhitungan setiap ada perubahan
-      _result = num1 * num2;
-      _result1 = _result - num3;
+      _countermurni = num1 * num2;
+      _lostcounter = _countermurni - num3;
+      _percentlost = (_lostcounter / _countermurni) * 100;
     });
   }
 
@@ -55,11 +57,14 @@ class _MyFormState extends State<MyForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Knitting Machine Instant Efficiency',
-          style: TextStyle(color: Color(0xFFEC4C01)),
-        ),
-      ),
+          title: const Text.rich(TextSpan(children: [
+        TextSpan(
+            text: "Knitting Machine ",
+            style: TextStyle(color: Color.fromRGBO(83, 83, 83, 1))),
+        TextSpan(
+            text: "Instant Efficientcy ",
+            style: TextStyle(color: Color(0xFFEC4C01)))
+      ]))),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Form(
@@ -82,7 +87,7 @@ class _MyFormState extends State<MyForm> {
                       )),
                       enabledBorder: OutlineInputBorder(
                           borderSide:
-                              BorderSide(color: Color.fromRGBO(37, 37, 37, 1))),
+                              BorderSide(color: Color.fromRGBO(83, 83, 83, 1))),
                       floatingLabelStyle: TextStyle(color: Color(0xFFEC4C01))),
                 ),
               ),
@@ -103,7 +108,7 @@ class _MyFormState extends State<MyForm> {
                       )),
                       enabledBorder: OutlineInputBorder(
                           borderSide:
-                              BorderSide(color: Color.fromRGBO(37, 37, 37, 1))),
+                              BorderSide(color: Color.fromRGBO(83, 83, 83, 1))),
                       floatingLabelStyle: TextStyle(color: Color(0xFFEC4C01))),
                 ),
               ),
@@ -111,15 +116,16 @@ class _MyFormState extends State<MyForm> {
               Text.rich(TextSpan(
                 children: [
                   TextSpan(
-                      text: '${_result.toInt()}',
+                      text: '${_countermurni.toInt()}',
                       style: const TextStyle(
                           fontSize: 20, color: Color(0xFFEC4C01))),
                   TextSpan(
                       text: ' counter',
                       style: const TextStyle(
-                          fontSize: 20, color: Color.fromARGB(255, 0, 0, 0)))
+                          fontSize: 20, color: Color.fromRGBO(83, 83, 83, 1)))
                 ],
               )),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
@@ -137,7 +143,7 @@ class _MyFormState extends State<MyForm> {
                       )),
                       enabledBorder: OutlineInputBorder(
                           borderSide:
-                              BorderSide(color: Color.fromRGBO(37, 37, 37, 1))),
+                              BorderSide(color: Color.fromRGBO(83, 83, 83, 1))),
                       floatingLabelStyle: TextStyle(color: Color(0xFFEC4C01))),
                 ),
               ),
@@ -147,17 +153,28 @@ class _MyFormState extends State<MyForm> {
                   TextSpan(
                       text: 'Lost ',
                       style: const TextStyle(
-                          fontSize: 20, color: Color.fromARGB(255, 0, 0, 0))),
+                          fontSize: 20, color: Color.fromRGBO(83, 83, 83, 1))),
                   TextSpan(
-                      text: '${_result1.toInt()}',
+                      text: '${_lostcounter.toInt()}',
                       style: const TextStyle(
                           fontSize: 20, color: Color(0xFFEC4C01))),
                   TextSpan(
                       text: ' counter',
                       style: const TextStyle(
-                          fontSize: 20, color: Color.fromARGB(255, 0, 0, 0)))
+                          fontSize: 20, color: Color.fromRGBO(83, 83, 83, 1))),
                 ],
               )),
+              const SizedBox(height: 10),
+              Text.rich(TextSpan(children: [
+                TextSpan(
+                    text: 'atau ',
+                    style: const TextStyle(
+                        fontSize: 20, color: Color.fromRGBO(83, 83, 83, 1))),
+                TextSpan(
+                    text: '${_percentlost}%',
+                    style: const TextStyle(
+                        fontSize: 20, color: Color(0xFFEC4C01))),
+              ]))
             ],
           ),
         ),

@@ -1,1 +1,6 @@
-24-10-24 menambahkan persentase dan perbaikan styling
+Update Notes
+
+26-10-2024
+Menghapus listener dari initState agar _lostcounter tidak dihitung secara real-time.
+Memindahkan fungsi perhitungan _calculateLostCounter hanya ke dalam tombol.
+Menggunakan widget helper _buildTextField untuk mengurangi pengulangan kode saat membuat TextFormField.

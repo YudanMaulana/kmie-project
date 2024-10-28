@@ -11,6 +11,7 @@
 migrate_working_dir/
 .test
 .web
+.lib/pw.dart
 # IntelliJ related
 *.iml
 *.ipr

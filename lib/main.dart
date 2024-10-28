@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './form.dart';
+import 'package:kme_project_test/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,7 +29,7 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: MyForm()),
+      body: Center(child: LoginPage()),
     );
   }
 }

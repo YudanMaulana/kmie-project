@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kme_project_test/login.dart';
+import 'package:kme_project_test/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Main(title: 'Knitting instant efficiency'),
+      home: const SplashScreen(),
     );
   }
 }

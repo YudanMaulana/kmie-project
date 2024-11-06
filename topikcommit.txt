@@ -11,3 +11,6 @@ release v.0.01
 login page
 show QR code if incorrect password or username
 disable button if forms is empty
+
+06-11-2024
+add splascreen with package another_splash_screen (not final)

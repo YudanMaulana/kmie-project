@@ -15,7 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   bool _showQRCode = false;
 
   void _login() {
-    // Pengecekan login dan variable username dan password kami sembunyikan
+    // variable username dan password kami sembunyikan
     if (_usernameController.text == username &&
         _passwordController.text == password) {
       Navigator.pushReplacement(

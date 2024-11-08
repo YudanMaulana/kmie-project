@@ -11,7 +11,6 @@
 migrate_working_dir/
 .test
 .web
-.lib/pw.dart
 # IntelliJ related
 *.iml
 *.ipr
@@ -33,7 +32,7 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-./lib/pw.dart
+.lib/pw.dart
 
 # Symbolication related
 app.*.symbols

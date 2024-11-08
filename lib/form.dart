@@ -177,7 +177,7 @@ class _MyFormState extends State<MyForm> {
 
   Widget _buildTextField(String label, TextEditingController controller) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(7.0),
       child: TextFormField(
         style: const TextStyle(color: Color(0xFFEC4C01)),
         keyboardType: TextInputType.numberWithOptions(signed: true),

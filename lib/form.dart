@@ -90,7 +90,7 @@ class _MyFormState extends State<MyForm> {
         ])),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.fromLTRB(0.8, 0, 0.8, 0),
         child: Form(
           child: Column(
             children: [

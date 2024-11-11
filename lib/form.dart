@@ -83,10 +83,11 @@ class _MyFormState extends State<MyForm> {
         title: const Text.rich(TextSpan(children: [
           TextSpan(
               text: "Knitting Machine ",
-              style: TextStyle(color: Color.fromRGBO(83, 83, 83, 1))),
+              style: TextStyle(
+                  color: Color.fromRGBO(83, 83, 83, 1), fontSize: 22)),
           TextSpan(
               text: "Instant Efficiency ",
-              style: TextStyle(color: Color(0xFFEC4C01))),
+              style: TextStyle(color: Color(0xFFEC4C01), fontSize: 22)),
         ])),
       ),
       body: Padding(

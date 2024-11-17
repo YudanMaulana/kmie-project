@@ -1,5 +1,5 @@
 # kme_project_test
-![](./assets/icon/app_icon.png)
+![](./assets/icon/knitting_machine.png)
 
 **this app for calculating [Knitting Machine](https://www.textiles-machines.com/indonesian/sale-28611089-single-commercial-electronic-jacquard-circular-knitting-machine-hat-sock-fabric.html) in rpm**
 

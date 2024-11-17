@@ -71,6 +71,7 @@ flutter:
   assets:
     - assets/KMIE.gif
     - assets/icon/qr_wame.png
+    - assets/icon/knitting_machine.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

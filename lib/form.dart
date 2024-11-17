@@ -69,7 +69,7 @@ class _MyFormState extends State<MyForm> {
       _percentlost = double.parse(_percentlost.toStringAsFixed(2));
       _percentincome = ((_countermurni - _lostcounter) / _countermurni) * 100;
       _percentincome = double.parse(_percentincome.toStringAsFixed(4));
-      _tominute = (_countermurni - _lostcounter) / 60;
+      _tominute = _lostcounter / 60;
       _isResultVisible = true;
     });
   }

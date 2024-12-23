@@ -1,6 +1,7 @@
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:kme_project_test/login.dart';
+import 'package:kme_project_test/form.dart';
+// import 'package:kme_project_test/login.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -63,7 +64,7 @@ class SplashScreen extends StatelessWidget {
           ),
         ),
         backgroundColor: Colors.white,
-        nextScreen: LoginPage(),
+        nextScreen: MyForm(),
       ),
     );
   }

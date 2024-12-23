@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kme_project_test/login.dart';
+import 'package:kme_project_test/form.dart';
 import 'package:kme_project_test/splash_screen.dart';
 
 void main() {
@@ -34,7 +34,7 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: LoginPage()),
+      body: Center(child: MyForm()),
     );
   }
 }

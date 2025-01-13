@@ -1,0 +1,16 @@
+Update Notes
+
+26-10-2024
+Menghapus listener dari initState agar _lostcounter tidak dihitung secara real-time.
+Memindahkan fungsi perhitungan _calculateLostCounter hanya ke dalam tombol.
+Menggunakan widget helper _buildTextField untuk mengurangi pengulangan kode saat membuat TextFormField.
+
+28-10-2024
+menambahkan pendapatan overall dan persen nya
+release v.0.01
+login page
+show QR code if incorrect password or username
+disable button if forms is empty
+
+06-11-2024
+add splascreen with package another_splash_screen (not final)

@@ -1,7 +1,7 @@
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:kme_project_test/bottom_nav_screen.dart';
+import 'package:kme_project_test/screens/bottom_nav_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   @override
@@ -65,16 +65,6 @@ class SplashScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         nextScreen: BottomNavScreen(),
       ),
-    );
-  }
-}
-
-class NextScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Home')),
-      body: Center(child: Text('Welcome to the Home Screen')),
     );
   }
 }

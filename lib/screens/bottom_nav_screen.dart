@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kme_project_test/overall.dart';
+import 'package:kme_project_test/screens/overall.dart';
+import 'package:kme_project_test/screens/setting.dart';
 
 class BottomNavScreen extends StatefulWidget {
   const BottomNavScreen({super.key});
@@ -15,7 +16,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   final List<Widget> _screens = [
     overAll(), // Halaman pertama
     Placeholder(), // Halaman kedua (kosong sementara)
-    Placeholder(), // Halaman ketiga (kosong sementara)
+    Setting(), // Halaman ketiga (kosong sementara)
   ];
 
   @override

@@ -1,5 +1,6 @@
 // import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:kme_project_test/functions.dart';
 
 class overAll extends StatefulWidget {
   const overAll({super.key});
@@ -17,8 +18,8 @@ class _MyFormState extends State<overAll> {
   double _lostcounter = 0;
   double _percentlost = 0;
   double _percentincome = 0;
-  double _counterincome = 0;
   double _tominute = 0;
+  double _counterincome = 0;
 
   bool _isFormFilled = false;
   bool _isResultVisible = false;
@@ -33,9 +34,11 @@ class _MyFormState extends State<overAll> {
 
   void _checkFormFilled() {
     setState(() {
-      _isFormFilled = _controller1.text.isNotEmpty &&
-          _controller2.text.isNotEmpty &&
-          _controller3.text.isNotEmpty;
+      _isFormFilled = isFormFilled(
+        _controller1.text,
+        _controller2.text,
+        _controller3.text,
+      );
     });
   }
 
@@ -57,19 +60,23 @@ class _MyFormState extends State<overAll> {
       return;
     }
 
-    double num1 = double.tryParse(_controller1.text) ?? 0;
-    double num2 = (double.tryParse(_controller2.text) ?? 0) * 60;
-    double num3 = double.tryParse(_controller3.text) ?? 0;
+    double num1 = parseDouble(_controller1.text);
+    double num2 = parseDouble(_controller2.text) * 60;
+    double num3 = parseDouble(_controller3.text);
+
+    final result = calculateLostCounter(
+      rpm: num1,
+      workHours: num2 / 60,
+      operatorCounter: num3,
+    );
 
     setState(() {
-      _countermurni = num1 * num2;
-      _lostcounter = _countermurni - num3;
+      _countermurni = result['countermurni']!;
+      _lostcounter = result['lostcounter']!;
+      _percentlost = result['percentlost']!;
+      _percentincome = result['percentincome']!;
       _counterincome = num3;
-      _percentlost = (_lostcounter / _countermurni) * 100;
-      _percentlost = double.parse(_percentlost.toStringAsFixed(2));
-      _percentincome = ((_countermurni - _lostcounter) / _countermurni) * 100;
-      _percentincome = double.parse(_percentincome.toStringAsFixed(4));
-      _tominute = _lostcounter / 60;
+      _tominute = result['tominute']!;
       _isResultVisible = true;
     });
   }
@@ -81,8 +88,8 @@ class _MyFormState extends State<overAll> {
       _lostcounter = 0;
       _percentlost = 0;
       _percentincome = 0;
-      _counterincome = 0;
       _tominute = 0;
+      _counterincome = 0;
       _controller1.clear();
       _controller2.clear();
       _controller3.clear();
